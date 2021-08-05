@@ -1,24 +1,41 @@
 def get_filename():
-    name = input(f"Введите имя открываемого файла: ")
-    return name + '.txt'
+    fileName = input(f"Введите имя открываемого файла: ")
+    return fileName + '.txt'
 
-def clean_text(text):
+
+def filter_clean(text):
     list_text = text
     for i in range(len(text)):
-        if (list_text[i].isalpha() == False) and list_text[i] != ' ':
+        if (not list_text[i].isalpha()) and list_text[i] != ' ':
             text = text.replace(list_text[i], ' ')
     return text.lower()
 
 
-def filer_less_3_letter(word_)
+def longest_word(list_):
+    list_ = less_3_letter(list_)
+    print(list_)
+    return
 
 
+def often_word(word_):
+    return
 
+
+def less_3_letter(list_):
+    sortList = []
+    for char in list_:
+        if len(char) > 3:
+            sortList.append(char)
+    return sortList
+
+def list_is_EN(list_):
+    return
 
 
 with open(get_filename(), encoding='utf8') as f:
-    line = clean_text(f.read()).split()
-    print(line)
+    wordList = filter_clean(f.read()).split()
+    longest_word(wordList)
+    print(wordList)
 
 ''''
  
@@ -34,4 +51,3 @@ with open(get_filename(), encoding='utf8') as f:
     text = text.replace("\n", "")
 
 '''
-
