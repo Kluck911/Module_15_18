@@ -49,16 +49,18 @@ def word_is_en(word_):
 
 def often_word(list_):
     list_ = less_3_letter(list_)
-    tab = {}
+    mostOften = []
+    countWord = 0
 
-    for i in range(0, len(list_)):
-        count = 0
-        for j in range(0, len(list_)):
-            if list_[i] == list_[j]:
-                count += 1
-        tab.update({list_[i]: count})
-    print(tab)
+    for word in list_:
+        tempCountWord = list_.count(word)
+        if tempCountWord > countWord:
+            countWord = tempCountWord
+            mostOften = [word]
+        elif tempCountWord == countWord:
+            mostOften.append(word)
 
+    return ', '.join(mostOften)
 
 def less_3_letter(list_):
     sortList = []
@@ -72,6 +74,5 @@ def less_3_letter(list_):
 
 with open(get_filename(), encoding='utf8') as f:
     wordList = filter_clean(f.read()).split()
-    often_word(wordList)
     print(f'Наиболее часто встречающееся слово:\n{often_word(wordList)}')
     ''''print(f'Наиболее длинное слово на английском:\n {longest_word(wordList)}'''
