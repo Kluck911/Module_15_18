@@ -9,3 +9,4 @@ julia = User(name='Juliana Vadfacdf', email='jdvh@kd.xov')
 
 print(peter.name)
 print(julia.email)
+print(julia.name)
