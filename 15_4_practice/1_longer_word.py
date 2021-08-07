@@ -1,5 +1,7 @@
 alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
+'получаем имя файла'
+
 
 def get_filename():
     fileName = input(f"Введите имя открываемого файла: ")
@@ -7,35 +9,42 @@ def get_filename():
     return fileName + '.txt'
 
 
+'очищаем список от символов'
+
+
 def filter_clean(list_):
     list_text = list_
 
-    for i in range(len(list_)):
-        if (not list_text[i].isalpha()) and list_text[i] != ' ':
-            list_ = list_.replace(list_text[i], ' ')
-
+    'заменяем все символы кроме букв на пробелы'
+    for pos in range(len(list_)):
+        if not list_text[pos].isalpha():
+            list_ = list_.replace(list_text[pos], ' ')
+    'переводим в один регистр, чтобы слова воспринимались одинаково с буквами в разных регистрах'
     return list_.lower()
 
 
+'список самых длинных слов'
+
+
 def longest_word(list_):
-    firstWord = ''
     listEN = []
     list_en_filter = []
-
+    'создаем список из английских слов'
     for word_ in list_:
+        'проверка, является ли слово английским'
         if word_is_en(word_):
             listEN.append(word_)
+    'сортируем от большего к меньшему'
     listEN = sorted(listEN, key=len)[::-1]
     i = 0
+    'записываем в список list_en_filter все элементы списка начиная с нулевого с одинаковой длинной (все самые длинные слова)'
     list_en_filter.append(listEN[i])
-    while len(listEN[i]) == len(listEN[i+1]):
-        if listEN[i+1] not in list_en_filter:
+    while len(listEN[i]) == len(listEN[i + 1]):
+        if listEN[i + 1] not in list_en_filter:
             list_en_filter.append(listEN[i + 1])
         i += 1
 
-    return ', '.join(list_en_filter)
-
-
+    return list_en_filter
 
 
 def word_is_en(word_):
@@ -60,7 +69,8 @@ def often_word(list_):
         elif tempCountWord == countWord:
             mostOften.append(word)
 
-    return ', '.join(list(set(mostOften)))
+    return list(set(mostOften))
+
 
 def less_3_letter(list_):
     sortList = []
@@ -74,6 +84,6 @@ def less_3_letter(list_):
 
 with open(get_filename(), encoding='utf8') as f:
     wordList = filter_clean(f.read()).split()
-    print(f'Наиболее часто встречающееся слово:\n{often_word(wordList)}')
-    print(f'Наиболее длинное слово на английском:\n {longest_word(wordList)}')
-
+    print(wordList)
+    print('Наиболее часто встречающееся слово:\n', ', '.join(often_word(wordList)))
+    print('Наиболее длинное слово на английском:\n', ', '.join(longest_word(wordList)))
