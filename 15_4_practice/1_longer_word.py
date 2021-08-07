@@ -60,7 +60,7 @@ def often_word(list_):
         elif tempCountWord == countWord:
             mostOften.append(word)
 
-    return ', '.join(mostOften)
+    return ', '.join(list(set(mostOften)))
 
 def less_3_letter(list_):
     sortList = []
@@ -75,4 +75,5 @@ def less_3_letter(list_):
 with open(get_filename(), encoding='utf8') as f:
     wordList = filter_clean(f.read()).split()
     print(f'Наиболее часто встречающееся слово:\n{often_word(wordList)}')
-    ''''print(f'Наиболее длинное слово на английском:\n {longest_word(wordList)}'''
+    print(f'Наиболее длинное слово на английском:\n {longest_word(wordList)}')
+
