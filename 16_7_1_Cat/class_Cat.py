@@ -14,7 +14,6 @@ class Cat:
         return self.age
 
     def getDescription(self):
-        print(f'Кличка: {self.getName()}')
-        print(f'Пол: {self.getSex()}')
-        print(f'Возраст: {self.getAge()}')
-        return
+        return {'Кличка': self.name,
+                'Пол': self.sex,
+                'Возраст': self.age}
