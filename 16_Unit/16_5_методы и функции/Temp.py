@@ -38,7 +38,6 @@ events = [
     },
 ]
 
-
 for event in events:
     event_obj = Event()
     event_obj.init_from_dict(event)
